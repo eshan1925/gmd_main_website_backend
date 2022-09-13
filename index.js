@@ -9,9 +9,7 @@ const createprojectRoutes = require("./routes/createproject");
 const projectManager = require("./routes/project-manager");
 const blogRoutes = require("./routes/blogs");
 const createBlogRoute = require("./routes/create-new-blog");
-const editProfile = require("./routes/edit-profile");
 const profile = require("./routes/profile");
-
 //database connection
 connection();
 
@@ -26,7 +24,6 @@ app.use("/createproject",createprojectRoutes);
 app.use("/project-manager",projectManager);
 app.use("/new-blog-post",createBlogRoute);
 app.use("/blogs",blogRoutes);
-app.use("/editProfile",editProfile);
 app.use("/profile",profile);
 const port = process.env.PORT||8080;
 app.listen(port,()=>console.log(`Listening on port ${port} successfully`));
