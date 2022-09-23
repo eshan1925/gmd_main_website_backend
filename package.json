@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ob-gmd/gmd_main_website_backend#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

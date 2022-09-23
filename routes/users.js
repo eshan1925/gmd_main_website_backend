@@ -3,6 +3,7 @@ const { User, validate } = require("../models/user");
 const Token = require("../models/token");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
+const sendEmailFromSendGrid = require("../utils/sendEmailSendgrid");
 const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
@@ -27,9 +28,8 @@ router.post("/", async (req, res) => {
 			token: crypto.randomBytes(32).toString("hex"),
 		}).save();
 		const url = `${process.env.BASE_URL}api/users/${user.id}/verify/${token.token}`;
-        console.log(url);
-		await sendEmail(user.email, "Verify Email", url);
-
+		// await sendEmail(user.email, "Verify Email", url);
+		await sendEmailFromSendGrid(user.email,"Account Verification Email from GET ME DESIGN", url);
 		res
 			.status(201)
 			.send({ message: "An Email sent to your account please verify" });
