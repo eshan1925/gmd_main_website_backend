@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/user");
+const Comment  = require("../models/comment");
 //create a post
 
 router.post("/", async (req, res) => {
@@ -64,11 +65,41 @@ router.put("/:id/like",async(req,res)=>{
         res.status(500).json(error);
     }
 })
+
+
+//comment on a post
+
+router.put("/:id/comment",async(req,res)=>{
+  try {
+    const post = await Post.findById(req.params.id);
+    const comment = Comment(req.body);
+    if(!post.comments.includes(req.body.commenterId)){
+      await post.updateOne({$push:{comments:req.body.commenterId}});
+      await comment.save();
+      res.status(200).json("Comment Successfull");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//get comments for a post
+
+router.get("/:id/get-comment",async(req,res)=>{
+  try {
+    const comment = await Comment.find({"commenterId":req.params.id});
+    res.status(200).json(comment);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
+
 //get a post
 
 router.get("/:id",async(req,res)=>{
     try {
-        const post = await Post.findById(req.params.id);
+        const post = await Post.find(req.params.id);
         res.status(200).json(post);
     } catch (error) {
         res.status(500).json(error);
