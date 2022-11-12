@@ -29,9 +29,9 @@ app.use("/new-blog-post",createBlogRoute);
 app.use("/blogs",blogRoutes);
 app.use("/profile",profile);
 app.use("/api/posts", postRoute);
-var port = process.env.PORT;
+// var port = process.env.PORT;
 
-if(port==null || port==""){
-    port = 8080;
-}
-app.listen(port,()=>console.log(`Listening on port ${port} successfully`));
+// if(port==null || port==""){
+//     port = 8080;
+// }
+app.listen(process.env.PORT || 8080 ,()=>console.log(`Listening on port successfully`));
