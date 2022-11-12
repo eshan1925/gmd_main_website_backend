@@ -13,6 +13,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.0"
+  },
   "bugs": {
     "url": "https://github.com/ob-gmd/gmd_main_website_backend/issues"
   },
