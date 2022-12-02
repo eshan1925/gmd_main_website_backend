@@ -12,6 +12,7 @@ const blogRoutes = require("./routes/blogs");
 const createBlogRoute = require("./routes/create-new-blog");
 const profile = require("./routes/profile");
 const postRoute = require("./routes/post");
+const storyRoute = require("./routes/story");
 const morgan = require('morgan');
 //database connection
 connection();
@@ -31,6 +32,7 @@ app.use("/new-blog-post",createBlogRoute);
 app.use("/blogs",blogRoutes);
 app.use("/profile",profile);
 app.use("/api/posts", postRoute);
+app.use("/api/story",storyRoute);
 // var port = process.env.PORT;
 
 // if(port==null || port==""){
