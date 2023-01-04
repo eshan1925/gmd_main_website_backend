@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 //Get a user
 router.get("/:id", async (req, res) => {
   try {
-    User.find({ _id: req.params.id }, function (err, foundItems) {
+    User.find({ _id: req.params.id },{password:0,verified:0},function (err, foundItems) {
       if (!err) {
         res.status(200).send(foundItems);
       }
@@ -41,6 +41,8 @@ router.put("/:id/edit-profile", async (req, res) => {
         return res.status(500).json(err);
       }
     }
+
+    
     try {
       const user = await User.findByIdAndUpdate(req.params.id, {
         $set: req.body,

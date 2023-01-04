@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Post = require("../models/Post");
 const { User } = require("../models/user");
 const Comment = require("../models/comment");
+const GridFSBucket = require("mongodb").GridFSBucket;
 //create a post
 
 router.post("/", async (req, res) => {
@@ -12,6 +13,35 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+//create a post without react-file-base64
+router.post("/filer", async (req, res) => {
+  const file = req.body.img;
+  const text = req.body.desc;
+  const bucket = new GridFSBucket();
+  const uploadStream = bucket.openUploadStream(file.name);
+  const writeStream = bucket.openUploadStream(file.name);
+  // Write the file to the GridFS bucket
+  writeStream.write(Buffer.from(file.data, "base64"));
+  writeStream.end((err, file) => {
+    Post.insertOne(
+      {
+        userId: req.body.userId,
+        desc: text,
+        img: file._id,
+      },
+      (err, result) => {
+        if (err) {
+          res.status(500);
+        } else {
+          res.status(200);
+        }
+      }
+    );
+  });
+  // Pipe the file contents into the upload stream
+  fs.createReadStream(file.path).pipe(uploadStream);
 });
 
 //update a post

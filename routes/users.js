@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
       userId: user._id,
       token: crypto.randomBytes(32).toString("hex"),
     }).save();
-    const url = `${process.env.BASE_URL}api/users/${user.id}/verify/${token.token}`;
+    const url =`${process.env.BASE_URL}getmedesign/${token.token}/verification/${user.id}`;
     // await sendEmail(user.email, "Verify Email", url);
     await sendEmailFromSendGrid(
       user.email,
