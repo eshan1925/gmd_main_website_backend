@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
+const serverless=require("serverless-http");
 const cors = require("cors");
 const helmet = require("helmet");
 const connection = require("./db");
@@ -46,3 +47,6 @@ app.use("/community-forum",communityRoute);
 //     port = 8080;
 // }
 app.listen(process.env.PORT || 8080 ,()=>console.log(`Listening on port successfully`));
+
+
+module.exports.handler= serverless(app);

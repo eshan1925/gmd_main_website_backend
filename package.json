@@ -34,8 +34,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
     "morgan": "^1.10.0",
+    "netlify-lambda": "^2.0.15",
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
+    "serverless-http": "^3.1.1",
     "twilio": "^3.83.4"
   }
 }
