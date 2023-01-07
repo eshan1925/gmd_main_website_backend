@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Story = require("../models/Story");
+const Story = require("../models/story");
 const { User } = require("../models/user");
 //create a Story
 
