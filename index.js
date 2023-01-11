@@ -18,6 +18,7 @@ const dynamicPort = require("./routes/dynamicPortfolio");
 const contactRequirementRoute = require("./routes/contactRequirements");
 const morgan = require('morgan');
 const communityRoute = require("./routes/communityForum");
+const contactUsFromOut = require("./routes/contactus");
 //database connection
 connection();
 
@@ -40,6 +41,7 @@ app.use("/api/story",storyRoute);
 app.use("/dynamicPortfolio",dynamicPort);
 app.use("/contact-for-requirement",contactRequirementRoute);
 app.use("/community-forum",communityRoute);
+app.use("/contact-us",contactUsFromOut);
 // app.use("/")
 // var port = process.env.PORT;
 

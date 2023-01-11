@@ -26,19 +26,7 @@ router.get("/:id/my-blogs", async (req, res) => {
   }
 });
 
-router.get("/:id/all-blogs/:blogid",async (req,res)=>{
-  try {
-      newBlog.find({_id:req.params.blogid},function (err,foundItems) {
-          if(!err){
-              res.status(200).send(foundItems);
-          }
-      });
-  } catch (error) {
-      res.status(500).send({ message: "Internal Server Error" });
-  }
-});
-
-router.get("/:id/my-blogs/:blogid",async (req,res)=>{
+router.get("/:id/:blogid",async (req,res)=>{
   try {
       newBlog.find({_id:req.params.blogid},function (err,foundItems) {
           if(!err){
