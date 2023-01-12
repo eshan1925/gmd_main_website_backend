@@ -5,7 +5,7 @@ const newPortfolioProjectSchema = new Schema({
   creatorOfProject: { type: String, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
-  link: { type: String, required: true },
+  link: { type: String},
   image:{type:String,required:true}
 });
 
