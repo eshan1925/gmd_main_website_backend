@@ -19,6 +19,7 @@ const contactRequirementRoute = require("./routes/contactRequirements");
 const morgan = require('morgan');
 const communityRoute = require("./routes/communityForum");
 const contactUsFromOut = require("./routes/contactus");
+const forgotPassword = require("./routes/forgot-password");
 //database connection
 connection();
 
@@ -42,6 +43,7 @@ app.use("/dynamicPortfolio",dynamicPort);
 app.use("/contact-for-requirement",contactRequirementRoute);
 app.use("/community-forum",communityRoute);
 app.use("/contact-us",contactUsFromOut);
+app.use("/fp",forgotPassword);
 // app.use("/")
 // var port = process.env.PORT;
 
